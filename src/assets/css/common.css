@@ -1,0 +1,17 @@
+:root {
+	--primary-color: #ff9854;
+	
+	/* 全局修改 */
+	--van-search-left-icon-color: var(--primary-color) !important;
+}
+
+body {
+	font-style: 14px;
+}
+
+.top-page {
+	position: relative;
+	z-index: 100;
+	height: 100vh;
+	background-color: #fff;
+}
