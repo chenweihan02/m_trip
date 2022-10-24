@@ -15,3 +15,7 @@ body {
 	height: 100vh;
 	background-color: #fff;
 }
+
+.bottom-gray-line {
+	border-bottom: 1px solid #f2f2f2;
+}

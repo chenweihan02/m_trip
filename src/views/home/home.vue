@@ -14,6 +14,12 @@
 	import HomeNavBar from './cpns/home-nav-bar.vue'
 	import HomeSearchBox from './cpns/home-search-box.vue'
 	
+	import hyRequest from '@/services/request'
+	// 发送网络请求
+	// 1.热门建议
+	// hyRequest.get({
+	// 	url: "/"
+	// }) 
 	
 </script>
 

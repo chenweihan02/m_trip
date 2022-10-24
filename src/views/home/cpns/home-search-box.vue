@@ -1,7 +1,7 @@
 <template>
 	<div class="search-box">
 		<!-- 位置信息 -->
-		<div class="location">
+		<div class="location bottom-gray-line">
 			<div class="city" @click="cityClick">{{ currentCity.cityName }}</div>
 			<div class="position" @click="positionClick">
 				<span class="text">我的位置</span>
@@ -33,6 +33,25 @@
 			:round="false"
 			:show-confirm="false"
 			@confirm="onConfirm" />
+			
+			
+		<!-- 价格/人数选择 -->
+		<div class="section price-counter bottom-gray-line">
+			<div class="start">价格不限</div>
+			<div class="end">人数不限</div>
+		</div>
+		<!-- 关键字/位置/民宿 -->
+		<div class="section keyword bottom-gray-line">关键字/位置/民宿名</div>
+		
+		<!-- 热门建议 -->
+		<div class="section hot-suggests">
+			<template v-for="(item, index) in hotSuggests" :key="index">
+				<div class="item" 
+					:style="{color: item.tagText.color, background: item.tagText.background.color}">
+					{{ item.tagText.text }}
+				</div>
+			</template>
+		</div>
 	</div>
 </template>
 
@@ -52,9 +71,14 @@
 	import {
 		ref
 	} from 'vue'
+import useHomeStore from '@/stores/modules/home';
 
 
 	const router = useRouter()
+
+	// 定义props
+
+
 
 	//位置/城市
 	const cityClick = () => {
@@ -78,8 +102,10 @@
 
 	// 日期范围的处理
 	const nowDate = new Date()
+	const newDate = new Date()
+	newDate.setDate(nowDate.getDate() + 1) // nowdate +1
+	
 	const startDate = ref(formatMonthDay(nowDate))
-	const newDate = nowDate.setDate(nowDate.getDate() + 1) // nowdate +1
 	const endDate = ref(formatMonthDay(newDate))
 	const stayCount = ref(getDiffDays(nowDate, newDate))
 
@@ -94,6 +120,13 @@
 		// 2.隐藏日历
 		showCalendar.value = false
 	}
+	
+	
+	// 热门建议
+	const homeStore = useHomeStore()
+	homeStore.fetchAllCitiesData()
+	const { hotSuggests } = storeToRefs(homeStore)
+	
 </script>
 
 <style lang="less" scoped>
