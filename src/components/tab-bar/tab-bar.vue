@@ -1,6 +1,6 @@
 <template>
 	<div class="tab-bar">
-		<van-tabbar v-model="currentIndex" active-color="#ff9854">
+		<van-tabbar route v-model="currentIndex" active-color="#ff9854">
 			<template v-for="(item, index) in tabbarData">
 				<van-tabbar-item :to="item.path">
 					<span>{{ item.text }}</span>
@@ -12,38 +12,61 @@
 		</van-tabbar>
 	</div>
 
-		<!-- 		<template v-for="(item, index) in tabbarData">
+	<!-- 		<template v-for="(item, index) in tabbarData">
 			<div class="tab-bar-item" 
 				:class="{ active: currentIndex === index}"
 				@click="itemClick(index, item)"
 			> -->
-		<!-- <img :src="require(item.image)" /> -->
-		<!-- 1. v-if 来判断是否active -->
-		<!-- 2. 使用函数 -->
-		<!-- 				<img :src="getAssetURL(item.image, item.imageActive, currentIndex === index)" />
+	<!-- <img :src="require(item.image)" /> -->
+	<!-- 1. v-if 来判断是否active -->
+	<!-- 2. 使用函数 -->
+	<!-- 				<img :src="getAssetURL(item.image, item.imageActive, currentIndex === index)" />
 				<span class="text">{{ item.text }}</span>
 			</div>
 		</template> -->
-	
+
 </template>
 
 <script setup>
 	import tabbarData from "@/assets/data/tabbar.js"
-	import { getAssetURL } from '@/utils/load_assets_img.js'
-	import { ref } from "vue"
-	import { useRouter } from "vue-router"
+	import {
+		getAssetURL
+	} from '@/utils/load_assets_img.js'
+	import {
+		ref,
+		watch
+	} from "vue"
+	import {
+		useRoute,
+		useRouter
+	} from "vue-router"
 
+	// 监听路由改变时, 找到对应的索引, 设置currentIndex
+	const route = useRoute()
 	const currentIndex = ref(0)
+	watch(route, (newRoute) => {
+		const index = tabbarData.findIndex(item => item.path === newRoute.path)
+		if (index === -1) return
+		currentIndex.value = index
+	})
+
+
+
 </script>
 
 <style lang="less" scoped>
-	// 修改第三方UI组件库的样式
-	// 全局变量 没有scoped
-	// 有scoped :depp(.class) 穿透到子组件里面让他生效
-	
 	.tab-bar {
+		// 局部定义一个变量: 只针对.tab-bar子元素才生效
+		// --van-tabbar-item-icon-size: 30px !important;
+
+		// 找到类, 对类中的CSS属性重写
+		// :deep(.class)找到子组件的类, 让子组件的类也可以生效
+		:deep(.van-tabbar-item__icon) {
+			font-size: 50px;
+		}
+
 		img {
-			height: 28px;
+			height: 26px;
 		}
 	}
 </style>
