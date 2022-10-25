@@ -31,8 +31,6 @@ city 国内，海外 切换数据的时候，渲染速度慢
 直接创建两个city-group，然后通过v-show，v-if 和v-show区别？TODO
 虚拟列表？ TODO
 
-
-
 ---
 day11
 
@@ -60,7 +58,8 @@ underscore 防抖节流
 tabbar active没有切换 缺少route属性
 currentIndex 没有切换
 
-
+---
+在拦截器里面添加 loading
 
 ---
 ---
