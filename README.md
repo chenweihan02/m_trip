@@ -1,5 +1,8 @@
 # 一休旅途 m_trip
 [https://m.tujia.com](https://m.tujia.com/)
+
+
+1171 0325
 ---
 1. 配置样式重置 normalize.css reset.css
 2. 配置路由导航
@@ -62,6 +65,17 @@ currentIndex 没有切换
 在拦截器里面添加 loading
 
 ---
+
+detail 动态路由，/detail/:id
+
+
+---
+
+route 和  router区别
+
+---
+
+
 ---
 
 接口：[https://documenter.getpostman.com/view/12387168/UzXPxcSi](https://documenter.getpostman.com/view/12387168/UzXPxcSi)
