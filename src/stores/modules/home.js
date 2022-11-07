@@ -5,6 +5,7 @@ const useHomeStore = defineStore("home", {
 	state: () => ({
 		hotSuggests: [],
 		categories: [],
+		
 		currentPage: 1,
 		houselist: []
 	}),

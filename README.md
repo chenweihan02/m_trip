@@ -75,6 +75,8 @@ route 和  router区别
 
 ---
 
+滚动，不是window在滚动，而是页面元素div在滚动
+
 
 ---
 

@@ -1,7 +1,7 @@
 <template>
-	<div class="detail top-page" ref="detailRef">
-		<tab-control v-if="showTabControl" class="tabs" :titles="names" @tabItemClick="tabClick" ref="tabControlRef" />
+	<div class="detail top-page">
 		<van-nav-bar title="房屋详情" left-text="旅途" left-arrow @click-left="onClickLeft" />
+
 		<div class="main" v-if="mainPart" v-memo="[mainPart]">
 			<detail-swipe :swipe-data="mainPart.topModule.housePicture.housePics" />
 			<detail-infos name="描述" :ref="getSectionRef" :top-infos="mainPart.topModule" />
@@ -14,6 +14,7 @@
 			<detail-map name="周边" :ref="getSectionRef" :position="mainPart.dynamicModule.positionModule" />
 			<detail-intro :price-intro="mainPart.introductionModule" />
 		</div>
+
 		<div class="footer">
 			<img src="@/assets/img/detail/icon_ensure.png" alt="">
 			<div class="text">弘源旅途, 永无止境!</div>
@@ -33,21 +34,21 @@
 	} from 'vue-router'
 	import {
 		getDetailInfos
-	} from "@/services"
+	} from '@/services'
 
-	import TabControl from "@/components/tab-control/tab-control.vue"
-	import DetailSwipe from "./cpns/detail_01-swipe.vue"
-	import DetailInfos from "./cpns/detail_02-infos.vue"
-	import DetailFacility from "./cpns/detail_03-facility.vue"
-	import DetailLandlord from "./cpns/detail_04-landlord.vue"
-	import DetailComment from "./cpns/detail_05-comment.vue"
-	import DetailNotice from "./cpns/detail_06-notice.vue"
-	import DetailMap from "./cpns/detail_07-map.vue"
-	import DetailIntro from "./cpns/detail_08-intro.vue"
+
+	import DetailSwipe from './cpns/detail_01-swipe.vue'
+	import DetailInfos from './cpns/detail_02-infos.vue'
+	import DetailFacility from './cpns/detail_03-facility.vue'
+	import DetailLandlord from './cpns/detail_04-landlord.vue'
+	import DetailComment from './cpns/detail_05-comment.vue'
+	import DetailNotice from './cpns/detail_06-notice.vue'
+	import DetailMap from './cpns/detail_07-map.vue'
+	import DetailIntro from './cpns/detail_08-intro.vue'
 	import useScroll from '@/hooks/useScroll'
 
-	const router = useRouter()
 	const route = useRoute()
+	const router = useRouter()
 	const houseId = route.params.id
 
 	// 发送网络请求获取数据
@@ -57,10 +58,18 @@
 		detailInfos.value = res.data
 	})
 
+	// route.params.id
+	// 发送网络请求发送数据
+	getDetailInfos(route.params.id).then(res => {
+		detailInfos.value = res.data
+	})
+
+
 	// 监听返回按钮的点击
 	const onClickLeft = () => {
 		router.back()
 	}
+
 
 	// tabControl相关的操作
 	const detailRef = ref()
