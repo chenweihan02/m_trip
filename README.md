@@ -2,9 +2,10 @@
 <del>[https://m.tujia.com](https://m.tujia.com/)</del>
 
 
+![home.png](https://img.lkxin.cn/tu/2022/11/09/636b9ceda4835.png)
 ![detail.png](https://img.lkxin.cn/tu/2022/11/09/636b9cf2dd1f9.png)
 ![city.png](https://img.lkxin.cn/tu/2022/11/09/636b9cebf28f3.png)
-![home.png](https://img.lkxin.cn/tu/2022/11/09/636b9ceda4835.png)
+
 
 
 ![](./README_ASSET/home.png)
